@@ -1,0 +1,15 @@
+package dk.mwnck.scrapermonolith;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class ScraperMonolithApplicationTests
+{
+
+    @Test
+    void contextLoads()
+    {
+    }
+
+}
