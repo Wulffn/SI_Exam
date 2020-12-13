@@ -2,10 +2,17 @@ package dk.mwnck.rmi;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.internal.matchers.Any;
 
 import java.rmi.RemoteException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyDouble;
+import static org.mockito.Mockito.when;
 
 
 public class RmiInterfaceImplTest
@@ -13,51 +20,33 @@ public class RmiInterfaceImplTest
     // UUT
     private static RmiInterfaceImpl rmiInterfaceImpl;
 
+    @Mock
+    Car car;
+
     @BeforeAll
     static public void setup() throws RemoteException
     {
         rmiInterfaceImpl = new RmiInterfaceImpl();
     }
 
-    @Test
-    public void mustReturnFloatWhenPriceTypeIsFloat() {
+   /* @Test
+    public void mustCalculateWhenWeSaySo() throws Exception {
         // Arrange
-        float myFloat = 5F;
-        var expected = Float.class;
+        var expected = 7500;
+        when(car.getCurrency()).thenReturn("EUR");
+        when(car.getPrice()).thenReturn(1000D);
+        when(car.setPrice(anyDouble())).thenReturn(anyDouble()).
+        ArrayList<Object> objects = new ArrayList<Object>();
+        objects.add(car);
 
         // Act
-        var result = rmiInterfaceImpl.getClassOf(myFloat);
-        
-        // Assert
-        assertEquals(expected, result);
-    }
-
-    @Test
-    public void mustCastToStringWhenPriceTypeIsString() {
-        // Arrange
-        var expected = "5.0";
-        double price = 5;
-
-        var targetType = String.class;
-
-        // Act
-        var result = rmiInterfaceImpl.castValueTo(price, targetType);
+        var actual = rmiInterfaceImpl.calculatePrice(objects, "DKK");
 
         // Assert
-        assertEquals(expected, result);
-    }
+        assertEquals(expected, actual);
+    }*/
 
-    @Test
-    public void mustCastToFloatWhenPriceTypeIsFloat() {
-        // Arrange
-        var expected = 5F;
-        double price = 5;
-        var targetType = Float.class;
 
-        // Act
-        var result = rmiInterfaceImpl.castValueTo(price, targetType);
 
-        // Assert
-        assertEquals(expected, result);
-    }
+
 }

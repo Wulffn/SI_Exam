@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface RmiInterface extends Remote
 {
-    public void calculatePrice(List<Object> objects, Currency targetCurrency) throws RemoteException;
+    public void calculatePrice(List<Object> objects, String targetCurrency) throws Exception;
 }
