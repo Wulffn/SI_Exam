@@ -24,21 +24,25 @@ public class RmiInterfaceImpl extends UnicastRemoteObject implements RmiInterfac
 
     public void calculatePrice(List<Object> objects, String targetCurrency) throws Exception
     {
-        rates = null;
-        for (Object object : objects)
+        for(int i = 0; i < objects.size(); i++)
         {
-            if (rates == null)
-                rates = getRates(targetCurrency);
-            Field[] fields = object.getClass().getDeclaredFields();
+            if (i == 0 && rates == null)
+                setRates(getRates(targetCurrency));
+
+            Object object = objects.get(i);
+
             Method[] methods = object.getClass().getDeclaredMethods();
             try
             {
                 Method getPriceMethod = (Method)Arrays.stream(methods).filter(m -> m.getName().equalsIgnoreCase("getprice")).findFirst().get();
+                Method setPriceMethod = (Method)Arrays.stream(methods).filter(m -> m.getName().equalsIgnoreCase("setprice")).findFirst().get();
                 Method getCurrencyMethod = (Method)Arrays.stream(methods).filter(m -> m.getName().equalsIgnoreCase("getcurrency")).findFirst().get();
                 Method setCurrencyMethod = (Method)Arrays.stream(methods).filter(m -> m.getName().equalsIgnoreCase("setcurrency")).findFirst().get();
                 Double price = (Double)getPriceMethod.invoke(object);
                 Double convertedPrice = change(price, getCurrencyMethod.invoke(object).toString());
-                setCurrencyMethod.invoke(object, convertedPrice);
+                setCurrencyMethod.invoke(object, targetCurrency);
+                setPriceMethod.invoke(object, convertedPrice);
+
             }
             catch(Exception e)
             {
@@ -46,7 +50,10 @@ public class RmiInterfaceImpl extends UnicastRemoteObject implements RmiInterfac
             }
         }
     }
-
+    public void setRates(Map<String, Double> rates)
+    {
+        this.rates = rates;
+    }
     private static Map<String, Double> getRates(String base) throws Exception
     {
 
