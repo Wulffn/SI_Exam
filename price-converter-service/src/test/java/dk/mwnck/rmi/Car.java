@@ -1,6 +1,7 @@
 package dk.mwnck.rmi;
+import java.io.Serializable;
 
-public abstract class Car {
+public abstract class Car implements Serializable {
     private double price;
     public double getPrice(){return price;}
     abstract String getCurrency();

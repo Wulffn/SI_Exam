@@ -77,10 +77,6 @@ public class RmiInterfaceImplTest
         var actual = car.getPrice();
 
         // Assert
-        assertEquals(expected, actual);
+        assertEquals(expected, actual, 1);
     }
-
-
-
-
 }

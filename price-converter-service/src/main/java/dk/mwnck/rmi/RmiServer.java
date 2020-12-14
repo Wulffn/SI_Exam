@@ -2,9 +2,13 @@ package dk.mwnck.rmi;
 
 
 import java.rmi.Naming;
+import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
+import java.security.Permission;
+import java.security.Policy;
+import java.security.ProtectionDomain;
 
 public class RmiServer
 {
@@ -23,6 +27,19 @@ public class RmiServer
 
             // Create a server registry at default port 1099
             registry = LocateRegistry.createRegistry(1099);
+
+            Policy allPermissionPolicy = new Policy() {
+
+                @Override
+                public boolean implies(ProtectionDomain domain, Permission permission) {
+                    return true;
+                }
+            };
+
+            Policy.getPolicy();
+            Policy.setPolicy(allPermissionPolicy);
+            System.setSecurityManager(new SecurityManager());
+
             System.out.println("RMI registry created ");
 
             // Create engine of remote services, running on the server
