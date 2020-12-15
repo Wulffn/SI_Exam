@@ -2,48 +2,63 @@ package dk.mwnck.rmi;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.mock.SerializableMode;
 
 import java.rmi.RemoteException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.anyDouble;
-import static org.mockito.Mockito.*;
 
 public class RmiClientTest
 {
     // SUT
     //RmiClient rmiClient = new RmiClient();
 
-    private static Car car;
+    private static Map<String, Map<String, Object>> objects;
 
 
     @BeforeAll
     static public void setup() throws RemoteException
     {
         //car = mock(Car.class, withSettings().serializable(SerializableMode.ACROSS_CLASSLOADERS));
-        car = new Car();
+        objects = new HashMap<>();
     }
 
     @Test
     public void mustCalculateDanishPrice() throws Exception {
         // Arrange
         var expected = 7500D;
-        car.setCurrency("EUR");
-        car.setPrice(1000D);
 
-        ArrayList<Object> cars = new ArrayList<>();
-        cars.add(car);
+        Map<String, Object> map = new HashMap<>();
+        map.put("price", 1000D);
+        map.put("currency", "EUR");
+
+        objects.put("id", map);
 
         // Act
-        RmiClient.getService(cars, "DKK");
-        var actual = car.getPrice();
+        Map<String, Map<String, Object>> res = RmiClient.invokeConversionService(objects, "DKK");
+        var actual = (Double) res.get("id").get("price");
 
         // Assert
-        assertEquals(expected, actual, 1);
+        assertEquals(expected, actual, 100);
+    }
+
+    @Test
+    public void mustCalculateGermanPrice() throws Exception {
+        // Arrange
+        var expected = 1000D;
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("price", 7500D);
+        map.put("currency", "DKK");
+
+        objects.put("id", map);
+
+        // Act
+        Map<String, Map<String, Object>> res = RmiClient.invokeConversionService(objects, "EUR");
+        var actual = (Double) res.get("id").get("price");
+
+        // Assert
+        assertEquals(expected, actual, 100);
     }
 }

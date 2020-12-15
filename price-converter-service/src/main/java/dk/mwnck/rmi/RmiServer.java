@@ -28,17 +28,17 @@ public class RmiServer
             // Create a server registry at default port 1099
             registry = LocateRegistry.createRegistry(1099);
 
-            Policy allPermissionPolicy = new Policy() {
-
-                @Override
-                public boolean implies(ProtectionDomain domain, Permission permission) {
-                    return true;
-                }
-            };
-
-            Policy.getPolicy();
-            Policy.setPolicy(allPermissionPolicy);
-            System.setSecurityManager(new SecurityManager());
+//            Policy allPermissionPolicy = new Policy() {
+//
+//                @Override
+//                public boolean implies(ProtectionDomain domain, Permission permission) {
+//                    return true;
+//                }
+//            };
+//
+//            Policy.getPolicy();
+//            Policy.setPolicy(allPermissionPolicy);
+//            System.setSecurityManager(new SecurityManager());
 
             System.out.println("RMI registry created ");
 

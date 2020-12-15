@@ -16,7 +16,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Car
 {
     @NonNull
-    private String manufacturer, model, price;
+    private String id, manufacturer, model, price;
     @NonNull
     private int km, year;
     @NonNull

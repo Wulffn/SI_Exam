@@ -5,6 +5,8 @@ import dk.mwnck.constants.Currency;
 import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
 
+import java.io.*;
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.URL;
@@ -12,76 +14,108 @@ import java.nio.charset.Charset;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
+import java.util.stream.Collectors;
 
-public class RmiInterfaceImpl extends UnicastRemoteObject implements RmiInterface
-{
-    Map<String, Double> rates = null;
+public class RmiInterfaceImpl extends UnicastRemoteObject implements RmiInterface {
 
-    public RmiInterfaceImpl() throws RemoteException
-    {
+    public RmiInterfaceImpl() throws RemoteException {
         super();
     }
 
-    public void calculatePrice(List<Object> objects, String targetCurrency) throws Exception
-    {
-        for(int i = 0; i < objects.size(); i++)
-        {
-            if (i == 0 && rates == null)
-                setRates(getRates(targetCurrency));
+//    ID:
+//        price: :Double
+//        currency: :String
+//    ID:
+//        price: :Double
+//        currency: :String
 
-            Object object = objects.get(i);
+    @Override
+    public Map<String, Map<String, Object>> calculatePrice(Map<String, Map<String, Object>> objects, String targetCurrency) throws Exception {
+        Map<String, Double> rates = getRates(targetCurrency);
 
-            Method[] methods = object.getClass().getDeclaredMethods();
-            try
-            {
-                Method getPriceMethod = (Method)Arrays.stream(methods).filter(m -> m.getName().equalsIgnoreCase("getprice")).findFirst().get();
-                Method setPriceMethod = (Method)Arrays.stream(methods).filter(m -> m.getName().equalsIgnoreCase("setprice")).findFirst().get();
-                Method getCurrencyMethod = (Method)Arrays.stream(methods).filter(m -> m.getName().equalsIgnoreCase("getcurrency")).findFirst().get();
-                Method setCurrencyMethod = (Method)Arrays.stream(methods).filter(m -> m.getName().equalsIgnoreCase("setcurrency")).findFirst().get();
-                Double price = (Double)getPriceMethod.invoke(object);
-                Double convertedPrice = change(price, getCurrencyMethod.invoke(object).toString());
-                setCurrencyMethod.invoke(object, targetCurrency);
-                setPriceMethod.invoke(object, convertedPrice);
+        for (String key : objects.keySet()) {
+            Map<String, Object> properties = objects.get(key);
+            double price = (double) properties.get("price");
+            String currency = (String) properties.get("currency");
+            double convertedPrice = change(price, rates.get(currency));
+            properties.put("price", convertedPrice);
+            properties.put("currency", targetCurrency);
+            objects.put(key, properties);
+        }
+        return objects;
+    }
 
-            }
-            catch(Exception e)
-            {
-                System.out.println("I wont do it: " + e.getMessage());
-            }
+
+    public Double change(Double price, double rate) {
+        return price / rate;
+    }
+
+    public static Map<String, Double> getRates(String targetCurrency) throws Exception {
+        String fileName = getFileName(targetCurrency);
+        Map rates = null;
+        try {
+            FileInputStream fis = new FileInputStream("rates" + File.separator + fileName);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            rates = (Map) ois.readObject();
+            ois.close();
+        } catch (ClassNotFoundException | IOException ioe) {
+            ioe.printStackTrace();
+        }
+        return rates;
+    }
+
+    public static void writeRatesToFile(Map<String, Double> rates, String fileName) {
+        try {
+            FileOutputStream fos =
+                    new FileOutputStream("rates" + File.separator + fileName);
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(rates);
+            oos.close();
+            fos.close();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
         }
     }
-    public void setRates(Map<String, Double> rates)
-    {
-        this.rates = rates;
+
+    public static String getFileName(String targetCurrency) throws Exception {
+        File folder = new File("rates" + File.separator);
+        File file = null;
+        String fileName = "";
+        try {
+            file = Arrays.stream(folder.listFiles()).filter(f -> f.getName().contains(targetCurrency)).findFirst().get();
+        } catch (NoSuchElementException ex) {
+            fileName = targetCurrency + "-" + System.currentTimeMillis() + ".ser";
+            writeRatesToFile(getRatesFromAPI(targetCurrency), fileName);
+            return fileName;
+        }
+
+        Date fileTimeStamp = new Date(Long.valueOf(file.getName().split("-")[1].split("\\.")[0]));
+        Date curTimeMinus5 = new Date(System.currentTimeMillis() - (60000 * 5));
+
+        if (fileTimeStamp.after(curTimeMinus5)) {
+            return file.getName();
+        } else {
+            file.delete();
+            fileName = targetCurrency + "-" + System.currentTimeMillis() + ".ser";
+            writeRatesToFile(getRatesFromAPI(targetCurrency), fileName);
+            return fileName;
+        }
     }
-    private static Map<String, Double> getRates(String base) throws Exception
-    {
+
+    private static Map<String, Double> getRatesFromAPI(String base) throws Exception {
 
         // https://api.exchangeratesapi.io/latest
-        JSONObject json = new JSONObject(IOUtils.toString(new URL("https://api.exchangeratesapi.io/latest?base=" + base.toString()), Charset.forName("UTF-8")));
+        JSONObject json = new JSONObject(IOUtils.toString(new URL("https://api.exchangeratesapi.io/latest?base=" + base), Charset.forName("UTF-8")));
         JSONObject rates = json.getJSONObject("rates");
 
         Iterator<String> keys = rates.keys();
         Map<String, Double> result = new HashMap<>();
-        while(keys.hasNext())
-        {
+        while (keys.hasNext()) {
             String key = keys.next();
             result.put(key, rates.getDouble(key));
         }
 
-        System.out.println(result.toString());
         return result;
     }
 
-    public Double change(Double price, String targetCurrency)
-    {
-        if (this.rates != null)
-        {
-            return price / rates.get(targetCurrency);
-        }
-        else {
-            System.out.println("BURN, no conversion for you!");
-            return null;
-        }
-    }
 }
