@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e80a4d0b-8eb5-4ffd-8e52-5675dc17d332" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1lgc98sLdz1IRdL1ZJ5OElzcDEj" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="RunManager" selected="JUnit.RmiClientTest">
+    <configuration name="RmiClientTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="camunda-price-converter-rmiclient" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dk.mwnck.rmi.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="dk.mwnck.rmi" />
+      <option name="MAIN_CLASS_NAME" value="dk.mwnck.rmi.RmiClientTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RmiClientTest.mustCalculateDanishPrice" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="camunda-price-converter-rmiclient" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dk.mwnck.rmi.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="dk.mwnck.rmi" />
+      <option name="MAIN_CLASS_NAME" value="dk.mwnck.rmi.RmiClientTest" />
+      <option name="METHOD_NAME" value="mustCalculateDanishPrice" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RmiClientTest.mustCalculateGermanPrice" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="camunda-price-converter-rmiclient" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dk.mwnck.rmi.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="dk.mwnck.rmi" />
+      <option name="MAIN_CLASS_NAME" value="dk.mwnck.rmi.RmiClientTest" />
+      <option name="METHOD_NAME" value="mustCalculateGermanPrice" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.RmiClientTest" />
+        <item itemvalue="JUnit.RmiClientTest.mustCalculateGermanPrice" />
+        <item itemvalue="JUnit.RmiClientTest.mustCalculateDanishPrice" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e80a4d0b-8eb5-4ffd-8e52-5675dc17d332" name="Default Changelist" comment="" />
+      <created>1608022020763</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1608022020763</updated>
+      <workItem from="1608022024529" duration="3396000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1878" height="264" key="GridCell.Tab.0.bottom" timestamp="1608030613673">
+      <screen x="-1920" y="25" width="1920" height="1055" />
+    </state>
+    <state width="1878" height="264" key="GridCell.Tab.0.bottom/-1920.25.1920.1055/0.25.1920.983@-1920.25.1920.1055" timestamp="1608030613673" />
+    <state width="1878" height="264" key="GridCell.Tab.0.bottom/-1920.25.1920.1055/0.25.1920.983@0.25.1920.983" timestamp="1608029733362" />
+    <state width="1878" height="264" key="GridCell.Tab.0.center" timestamp="1608030613670">
+      <screen x="-1920" y="25" width="1920" height="1055" />
+    </state>
+    <state width="1878" height="264" key="GridCell.Tab.0.center/-1920.25.1920.1055/0.25.1920.983@-1920.25.1920.1055" timestamp="1608030613670" />
+    <state width="1878" height="264" key="GridCell.Tab.0.center/-1920.25.1920.1055/0.25.1920.983@0.25.1920.983" timestamp="1608029733362" />
+    <state width="1878" height="264" key="GridCell.Tab.0.left" timestamp="1608030613669">
+      <screen x="-1920" y="25" width="1920" height="1055" />
+    </state>
+    <state width="1878" height="264" key="GridCell.Tab.0.left/-1920.25.1920.1055/0.25.1920.983@-1920.25.1920.1055" timestamp="1608030613669" />
+    <state width="1878" height="264" key="GridCell.Tab.0.left/-1920.25.1920.1055/0.25.1920.983@0.25.1920.983" timestamp="1608029733361" />
+    <state width="1878" height="264" key="GridCell.Tab.0.right" timestamp="1608030613670">
+      <screen x="-1920" y="25" width="1920" height="1055" />
+    </state>
+    <state width="1878" height="264" key="GridCell.Tab.0.right/-1920.25.1920.1055/0.25.1920.983@-1920.25.1920.1055" timestamp="1608030613670" />
+    <state width="1878" height="264" key="GridCell.Tab.0.right/-1920.25.1920.1055/0.25.1920.983@0.25.1920.983" timestamp="1608029733362" />
+  </component>
+</project>
