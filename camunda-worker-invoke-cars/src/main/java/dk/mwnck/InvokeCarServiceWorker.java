@@ -29,7 +29,7 @@ public class InvokeCarServiceWorker {
                 .lockDuration(1000)
                 .handler((externalTask, externalTaskService) -> {
                     String carParams = externalTask.getVariable("car-params");
-                    //String carParams = "/kia/picanto/2012/50000";
+//                    String carParams = "/kia/picanto/2012/50000";
                     StringBuffer content = null;
                     // call REST here.
                     try {
@@ -62,7 +62,9 @@ public class InvokeCarServiceWorker {
         JsonArray jsonCars = jsonElement.getAsJsonArray();
         Map<String, Object> cars = new HashMap<>();
         for (JsonElement obj : jsonCars) {
-            cars.put("" + cars.size() + 1, obj);
+            JsonObject json = obj.getAsJsonObject();
+            String id = json.get("id").getAsString();
+            cars.put(id, obj);
         }
         return cars;
     }
