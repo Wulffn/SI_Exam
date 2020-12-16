@@ -6,6 +6,8 @@ import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
 
 import java.io.*;
+import java.lang.annotation.Documented;
+import java.lang.annotation.Inherited;
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -30,6 +32,9 @@ public class RmiInterfaceImpl extends UnicastRemoteObject implements RmiInterfac
 //        currency: :String
 
     @Override
+    /**
+     * {@inhreitdoc}
+     */
     public Map<String, Map<String, Object>> calculatePrice(Map<String, Map<String, Object>> objects, String targetCurrency) throws Exception {
         Map<String, Double> rates = getRates(targetCurrency);
 

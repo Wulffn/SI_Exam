@@ -43,7 +43,7 @@ public class RmiServer
             System.out.println("RMI registry created ");
 
             // Create engine of remote services, running on the server
-            RmiInterfaceImpl remoteEngine = new RmiInterfaceImpl();
+            RmiInterface remoteEngine = new RmiInterfaceImpl();
 
             // Register the engine by a name
             String engineName = "Convert";

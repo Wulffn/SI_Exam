@@ -20,20 +20,4 @@ public class RmiClient
 
         return result;
     }
-
-
-    /*public static void main(String[] args)
-    {
-        try
-        {
-            List<Object> cars = new ArrayList();
-
-            getInput();
-            getService();
-        }
-        catch (Exception e)
-        {
-            System.out.println("Exception: " + e);
-        }
-    }*/
 }

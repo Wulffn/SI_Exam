@@ -1,0 +1,18 @@
+torsdag: Python calculator
+torsdag: Formular i Camunda
+
+fredag: Hook up til Camunda (i korrekt BPM)
+fredag: Docker som samler jars.
+
+lørdag: Diagrammer
+søndag: Video
+
+senere: Oprydning generelt
+
+
+
+HUSK:
+1 diagram til hele arkitekturen 
+2 BPMN
+3 table documenting endpoints  of APIs.
+4 HUSK: business process kan være BPMN eller EIP notation.
