@@ -35,7 +35,7 @@ public class BilbasenScraper implements Scraper {
                 HtmlElement price = htmlItem.getFirstByXPath(".//div[contains(@class, 'col-xs-3 listing-price')]");
                 HtmlElement km = (HtmlElement) htmlItem.getByXPath(".//div[contains(@class, 'listing-data')]").get(2);
 
-                cars.add(new Car(searchCar.getManufacturer(), searchCar.getModel(), price.asText(), Integer.valueOf(km.asText().replace(".","")), searchCar.getYear(), getCountry(), Currency.EUR));
+                cars.add(new Car(searchCar.getManufacturer(), searchCar.getModel(), price.asText(), Integer.valueOf(km.asText().replace(".","")), searchCar.getYear(), getCountry(), Currency.DKK));
             }
         }
         return cars;

@@ -18,6 +18,7 @@ public class ScraperMonolithApplication
     public static void main(String[] args)
     {
         SpringApplication.run(ScraperMonolithApplication.class, args);
+
     }
 
 }

@@ -77,8 +77,11 @@ public class CamundaRmiWorker
                             cars.put(key, car);
                         });
 
+                        Map<String, Object> res = new HashMap<>();
+                        res.put("cars", cars);
+
                         // Send the result to camunda.
-                        externalTaskService.complete(externalTask,cars);
+                        externalTaskService.complete(externalTask,res);
                     }
                     catch (Exception e)
                     {

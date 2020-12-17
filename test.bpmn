@@ -12,35 +12,44 @@
     <bpmn:endEvent id="Event_074s3yx">
       <bpmn:incoming>Flow_0m7k6d7</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:sequenceFlow id="Flow_0qpnojh" sourceRef="change-currency" targetRef="Activity_0fb2a3z" />
+    <bpmn:sequenceFlow id="Flow_0qpnojh" sourceRef="change-currency" targetRef="Activity_0x3wrh0" />
     <bpmn:serviceTask id="change-currency" name="Calculate duty for car" camunda:type="external" camunda:topic="change-currency">
       <bpmn:incoming>Flow_0pl4sr8</bpmn:incoming>
       <bpmn:outgoing>Flow_0qpnojh</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="Flow_0m7k6d7" sourceRef="Activity_0fb2a3z" targetRef="Event_074s3yx" />
     <bpmn:userTask id="Activity_0fb2a3z" name="See resulting duty">
-      <bpmn:incoming>Flow_0qpnojh</bpmn:incoming>
+      <bpmn:incoming>Flow_1gl1prb</bpmn:incoming>
       <bpmn:outgoing>Flow_0m7k6d7</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="Flow_0pl4sr8" sourceRef="invoke-car-service" targetRef="change-currency" />
+    <bpmn:sequenceFlow id="Flow_1gl1prb" sourceRef="Activity_0x3wrh0" targetRef="Activity_0fb2a3z" />
+    <bpmn:serviceTask id="Activity_0x3wrh0" name="python cal" camunda:type="external" camunda:topic="dutycal">
+      <bpmn:incoming>Flow_0qpnojh</bpmn:incoming>
+      <bpmn:outgoing>Flow_1gl1prb</bpmn:outgoing>
+    </bpmn:serviceTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="DutyCaltest">
+      <bpmndi:BPMNEdge id="Flow_0pl4sr8_di" bpmnElement="Flow_0pl4sr8">
+        <di:waypoint x="400" y="117" />
+        <di:waypoint x="510" y="117" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0m7k6d7_di" bpmnElement="Flow_0m7k6d7">
-        <di:waypoint x="870" y="117" />
-        <di:waypoint x="912" y="117" />
+        <di:waypoint x="1020" y="117" />
+        <di:waypoint x="1042" y="117" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0qpnojh_di" bpmnElement="Flow_0qpnojh">
+        <di:waypoint x="610" y="117" />
         <di:waypoint x="710" y="117" />
-        <di:waypoint x="770" y="117" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0w9ek4e_di" bpmnElement="Flow_0w9ek4e">
         <di:waypoint x="208" y="117" />
         <di:waypoint x="300" y="117" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0pl4sr8_di" bpmnElement="Flow_0pl4sr8">
-        <di:waypoint x="400" y="117" />
-        <di:waypoint x="610" y="117" />
+      <bpmndi:BPMNEdge id="Flow_1gl1prb_di" bpmnElement="Flow_1gl1prb">
+        <di:waypoint x="810" y="117" />
+        <di:waypoint x="920" y="117" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="172" y="99" width="36" height="36" />
@@ -52,13 +61,16 @@
         <dc:Bounds x="300" y="77" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_074s3yx_di" bpmnElement="Event_074s3yx">
-        <dc:Bounds x="912" y="99" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_05qzz3y_di" bpmnElement="change-currency">
-        <dc:Bounds x="610" y="77" width="100" height="80" />
+        <dc:Bounds x="1042" y="99" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_08c5t2i_di" bpmnElement="Activity_0fb2a3z">
-        <dc:Bounds x="770" y="77" width="100" height="80" />
+        <dc:Bounds x="920" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_05qzz3y_di" bpmnElement="change-currency">
+        <dc:Bounds x="510" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0o29y5p_di" bpmnElement="Activity_0x3wrh0">
+        <dc:Bounds x="710" y="77" width="100" height="80" />
       </bpmndi:BPMNShape>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
