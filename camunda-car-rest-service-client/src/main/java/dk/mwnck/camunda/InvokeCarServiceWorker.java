@@ -1,17 +1,18 @@
 package dk.mwnck.camunda;
 
-import java.util.logging.Logger;
-
-import com.google.gson.*;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.camunda.bpm.client.ExternalTaskClient;
 
-import java.io.*;
-import java.lang.reflect.Type;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
+import java.util.logging.Logger;
 
 public class InvokeCarServiceWorker {
 
@@ -28,13 +29,11 @@ public class InvokeCarServiceWorker {
         client.subscribe("invoke-car-service")
                 .lockDuration(1000)
                 .handler((externalTask, externalTaskService) -> {
-//                    String carParams = externalTask.getVariable("car-params");
                     String manufacturer, model, year, km;
                     manufacturer = externalTask.getVariable("manufacturer");
                     model = externalTask.getVariable("model");
                     year = externalTask.getVariable("year");
                     km = externalTask.getVariable("km");
-//                    String carParams = "/kia/picanto/2012/50000";
                     String carParams = String.format("/%s/%s/%s/%s", manufacturer, model, year, km);
                     System.out.println(carParams);
                     StringBuffer content = null;
