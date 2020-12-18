@@ -1,0 +1,6 @@
+Communication between containers:
+https://codeblog.dotsandbrackets.com/communication-between-docker-containers/
+https://stackoverflow.com/questions/46546430/docker-compose-exposing-port-of-docker-image-to-host
+
+Wait for container:
+https://stackoverflow.com/questions/31746182/docker-compose-wait-for-container-x-before-starting-y
