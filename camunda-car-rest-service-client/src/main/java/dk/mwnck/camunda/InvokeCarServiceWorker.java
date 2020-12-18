@@ -17,14 +17,14 @@ import java.util.logging.Logger;
 public class InvokeCarServiceWorker {
 
     private final static Logger LOGGER = Logger.getLogger(InvokeCarServiceWorker.class.getName());
-    private final static String URL = "http://localhost:8090/car";
+    private final static String URL = "http://0.0.0.0:8090/car";
 
     public static void main(String[] args) {
         ExternalTaskClient client = ExternalTaskClient.create()
-                .baseUrl("http://localhost:8082/engine-rest")
+                .baseUrl("http://0.0.0.0:8082/engine-rest")
                 .asyncResponseTimeout(10000)
                 .build();
-
+        System.out.println("I'M AT 0.0.0.0");
         // subscribe to external task topic "invoke-car-service" as specified in BPMN
         client.subscribe("invoke-car-service")
                 .lockDuration(1000)
