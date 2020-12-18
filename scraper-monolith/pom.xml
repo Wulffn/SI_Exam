@@ -10,13 +10,12 @@
     </parent>
     <groupId>dk.mwnck</groupId>
     <artifactId>scraper-monolith</artifactId>
-    <version>0.0.1</version>
-    <packaging>war</packaging>
+    <version>1.0</version>
     <name>scraper-monolith</name>
     <description>Monolith app that stores scraping results in database</description>
 
     <properties>
-        <java.version>15</java.version>
+        <java.version>11</java.version>
     </properties>
 
     <dependencies>

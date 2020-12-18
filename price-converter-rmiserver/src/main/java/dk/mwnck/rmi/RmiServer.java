@@ -23,6 +23,7 @@ public class RmiServer
     {
         try
         {
+            System.out.println("Starting..");
             System.out.println("RMI server localhost starts");
 
             // Create a server registry at default port 1099
@@ -48,7 +49,9 @@ public class RmiServer
             // Register the engine by a name
             String engineName = "Convert";
             Naming.rebind("//localhost/" + engineName, remoteEngine);
+            System.out.println("I'm started...!");
             System.out.println("Engine " + engineName + " bound in registry");
+
 
         }
         catch (Exception e)

@@ -17,7 +17,7 @@ import java.util.logging.Logger;
 public class InvokeCarServiceWorker {
 
     private final static Logger LOGGER = Logger.getLogger(InvokeCarServiceWorker.class.getName());
-    private final static String URL = "http://localhost:8080/car";
+    private final static String URL = "http://localhost:8090/car";
 
     public static void main(String[] args) {
         ExternalTaskClient client = ExternalTaskClient.create()

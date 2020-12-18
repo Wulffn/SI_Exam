@@ -23,27 +23,25 @@ public class ScraperScheduler
 
     // run at some point in time every day.
     // syntax is: sec min hour dayOfMonth month year
-    @Scheduled(cron = "0 5 0 * * ?", zone = "Europe/Copenhagen")
-    public void scheduleTaskUsingCronExpression()
-    {
+//    @Scheduled(cron = "0 5 0 * * ?", zone = "Europe/Copenhagen", initialDelay = 3000L)
+//    public void scheduleTaskUsingCronExpression()
+//    {
+//
+//        long now = System.currentTimeMillis() / 1000;
+//        System.out.println(
+//                "schedule tasks using cron jobs - " + now);
+//
+//        try
+//        {
+//            scrapeCars();
+//        }
+//        catch(Exception e)
+//        {
+//            System.getLogger("cron scraper failure: ").log(System.Logger.Level.ERROR,"BURN: " + e.getMessage());
+//        }
+//    }
 
-        long now = System.currentTimeMillis() / 1000;
-        System.out.println(
-                "schedule tasks using cron jobs - " + now);
-
-        try
-        {
-            scrapeCars();
-        }
-        catch(Exception e)
-        {
-            System.getLogger("cron scraper failure: ").log(System.Logger.Level.ERROR,"BURN: " + e.getMessage());
-        }
-
-
-    }
-
-    @Scheduled(fixedDelay = 60000L)
+    @Scheduled(fixedDelay = 60000L * 60L * 24L, initialDelay = 10000L)
     public void doSomething() throws InterruptedException
     {
         scrapeCars();

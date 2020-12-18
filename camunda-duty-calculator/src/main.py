@@ -48,5 +48,5 @@ def handle_task(task: ExternalTask) -> TaskResult:
     return task.complete({"duty": duty})
 
 if __name__ == '__main__':
-    print('worker started')
+    print('worker started', flush=True)
     ExternalTaskWorker(worker_id="1", base_url="http://localhost:8082/engine-rest", config=default_config).subscribe("dutycal", handle_task)
