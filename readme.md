@@ -4,10 +4,10 @@
 
 #### Claus Kramath cph-ck83@cphbusiness.dk
 
-- Introduktion:\
+- ## Introduktion:
   Kerneprocessen i vores service kan finde bildata på danske og udenlandske brugtbilsplatforme og på baggrund af disse beregne et estimat af den danske registreringsafgift ved import af et lignende køretøj.
 
-- BPMN:
+- ## BPM:
 
 ![image](carDutyCalBPM.png)
 
@@ -68,7 +68,7 @@ Opdelingen i eksterne komponenter og Camunda klienter er lavet på baggrund af i
 
 ![image](arkitektur.png)
 
-- **Docker**\
+- ## **Docker**
   Der er etableret Docker images af de forskellige komponenter, så de kan deployes i Docker containere. Images kan hentes fra:
 
           https://hub.docker.com/u/cphmn492
@@ -78,7 +78,7 @@ Opdelingen i eksterne komponenter og Camunda klienter er lavet på baggrund af i
           docker-compose pull
           docker-compose up
 
-- **Orkestrering og koreografi**\
+- ## **Orkestrering og koreografi**
    Projektet benytter Camunda til orkestrering af processens forskellige handlinger. Det er således Camunda der, på baggrund af vores BPM afgør, i hvilken rækkefølge, handlingerne udføres.\
    Der er tale om en orkestrering, da alle handlinger er afhængige af hinanden; ingen kan kaldes parallelt. Vi kunne dog have designet price-converter-rmiclient'en således, at den blot hentede valutakurser uanset hvilken målvaluta der ønskes. Den ville da ikke have været afhængige af en liste af biler.\
    Vores price-converer-rmiservice komponent er allerede klar til dette scenarie, da denne blot kræver en targetCurrency.\
