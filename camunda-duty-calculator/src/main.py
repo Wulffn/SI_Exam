@@ -49,4 +49,4 @@ def handle_task(task: ExternalTask) -> TaskResult:
 
 if __name__ == '__main__':
     print('worker started', flush=True)
-    ExternalTaskWorker(worker_id="1", base_url="http://localhost:8082/engine-rest", config=default_config).subscribe("dutycal", handle_task)
+    ExternalTaskWorker(worker_id="1", base_url="http://camunda:8080/engine-rest", config=default_config).subscribe("dutycal", handle_task)

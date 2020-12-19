@@ -4,5 +4,5 @@ COPY pom.xml /home/app
 RUN mvn -f /home/app/pom.xml clean package
 
 FROM openjdk:11-jre-slim
-COPY --from=build /home/app/target/price-converter-service-1.1.jar /usr/local/lib/price-converter-rmiserver.jar
+COPY --from=build /home/app/target/price-converter-service-1.1-jar-with-dependencies.jar /usr/local/lib/price-converter-rmiserver.jar
 ENTRYPOINT ["java", "-jar", "/usr/local/lib/price-converter-rmiserver.jar"]

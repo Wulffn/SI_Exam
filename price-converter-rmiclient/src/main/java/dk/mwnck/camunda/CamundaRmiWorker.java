@@ -24,7 +24,7 @@ public class CamundaRmiWorker
 
     public static void main(String[] args) {
         ExternalTaskClient client = ExternalTaskClient.create()
-                .baseUrl("http://localhost:8082/engine-rest")
+                .baseUrl("http://camunda:8080/engine-rest")
                 .asyncResponseTimeout(10000)
                 .build();
 
@@ -85,7 +85,11 @@ public class CamundaRmiWorker
                     }
                     catch (Exception e)
                     {
+
                         System.out.println("RMI service failed: " + e.getMessage());
+                        System.out.println("Here comes the trace");
+                        System.out.println("--------------------");
+                        e.printStackTrace();
                     }
                 }).open();
 

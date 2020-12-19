@@ -13,6 +13,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.URL;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
@@ -36,7 +37,7 @@ public class RmiInterfaceImpl extends UnicastRemoteObject implements RmiInterfac
      * {@inhreitdoc}
      */
     public Map<String, Map<String, Object>> calculatePrice(Map<String, Map<String, Object>> objects, String targetCurrency) throws Exception {
-        Map<String, Double> rates = getRates(targetCurrency);
+        Map<String, Double> rates = getRates(targetCurrency, "rates");
 
         for (String key : objects.keySet()) {
             Map<String, Object> properties = objects.get(key);
@@ -55,8 +56,8 @@ public class RmiInterfaceImpl extends UnicastRemoteObject implements RmiInterfac
         return price / rate;
     }
 
-    public static Map<String, Double> getRates(String targetCurrency) throws Exception {
-        String fileName = getFileName(targetCurrency);
+    public static Map<String, Double> getRates(String targetCurrency, String folderName) throws Exception {
+        String fileName = getFileName(targetCurrency, folderName);
         Map rates = null;
         try {
             FileInputStream fis = new FileInputStream("rates" + File.separator + fileName);
@@ -69,10 +70,10 @@ public class RmiInterfaceImpl extends UnicastRemoteObject implements RmiInterfac
         return rates;
     }
 
-    public static void writeRatesToFile(Map<String, Double> rates, String fileName) {
+    public static void writeRatesToFile(Map<String, Double> rates, String folderName, String fileName) {
         try {
             FileOutputStream fos =
-                    new FileOutputStream("rates" + File.separator + fileName);
+                    new FileOutputStream(folderName + File.separator + fileName);
             ObjectOutputStream oos = new ObjectOutputStream(fos);
             oos.writeObject(rates);
             oos.close();
@@ -82,15 +83,16 @@ public class RmiInterfaceImpl extends UnicastRemoteObject implements RmiInterfac
         }
     }
 
-    public static String getFileName(String targetCurrency) throws Exception {
-        File folder = new File("rates" + File.separator);
+    public static String getFileName(String targetCurrency, String folderName) throws Exception {
+        File folder = new File(folderName + File.separator);
+        if(!folder.exists()) folder.mkdir();
         File file = null;
         String fileName = "";
         try {
             file = Arrays.stream(folder.listFiles()).filter(f -> f.getName().contains(targetCurrency)).findFirst().get();
         } catch (NoSuchElementException ex) {
             fileName = targetCurrency + "-" + System.currentTimeMillis() + ".ser";
-            writeRatesToFile(getRatesFromAPI(targetCurrency), fileName);
+            writeRatesToFile(getRatesFromAPI(targetCurrency), folderName, fileName);
             return fileName;
         }
 
@@ -102,7 +104,7 @@ public class RmiInterfaceImpl extends UnicastRemoteObject implements RmiInterfac
         } else {
             file.delete();
             fileName = targetCurrency + "-" + System.currentTimeMillis() + ".ser";
-            writeRatesToFile(getRatesFromAPI(targetCurrency), fileName);
+            writeRatesToFile(getRatesFromAPI(targetCurrency), folderName, fileName);
             return fileName;
         }
     }

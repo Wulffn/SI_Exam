@@ -17,11 +17,11 @@ import java.util.logging.Logger;
 public class InvokeCarServiceWorker {
 
     private final static Logger LOGGER = Logger.getLogger(InvokeCarServiceWorker.class.getName());
-    private final static String URL = "http://localhost:8090/car";
+    private final static String URL = "http://car-rest-service:8090/car";
 
     public static void main(String[] args) {
         ExternalTaskClient client = ExternalTaskClient.create()
-                .baseUrl("http://localhost:8082/engine-rest")
+                .baseUrl("http://camunda:8080/engine-rest")
                 .asyncResponseTimeout(10000)
                 .build();
 

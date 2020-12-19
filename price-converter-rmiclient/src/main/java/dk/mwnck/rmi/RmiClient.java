@@ -13,8 +13,7 @@ public class RmiClient
         Map<String, Map<String, Object>> result;
 
         // Lookup in the registry for the service interface you know by name
-        RmiInterface rmiInterface = (RmiInterface) Naming.lookup("//localhost/Convert");
-
+        RmiInterface rmiInterface = (RmiInterface) Naming.lookup("rmi://price-converter-rmiserver:1099/Convert");
         // Send requests, get responses
         result = rmiInterface.calculatePrice(objects, targetCurrency);
 

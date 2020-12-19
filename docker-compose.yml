@@ -1,39 +1,58 @@
-version: '3.7'
+version: '3'
 
 services:
-  camunda: # service name
-    image: camunda/camunda-bpm-platform:${DISTRO:-latest}
-    ports:
-      - "8082:8080"
-    expose:
-      - "8082"
-    restart: "on-failure" # restart camunda container if it fails
   camunda-duty-calculator:
+    container_name: camunda-duty-calculator
     image: cphmn492/camunda-duty-calculator
-    restart: "on-failure"
+    networks: 
+      - cam
     depends_on:
-      - camunda # camunda-duty-calculator will only start if camunda is up and running
-  price-converter-rmiserver:
-    image: cphmn492/price-converter-rmiserver
-    restart: "on-failure"
+      - camunda
   camunda-price-converter-rmiclient:
+    container_name: camunda-price-converter-rmiclient
     image: cphmn492/camunda-price-converter-rmiclient
-    restart: "on-failure"
+    networks: 
+      - cam
     depends_on:
-      - camunda # camunda-duty-calculator will only start if camunda is up and running
+      - camunda
+      - price-converter-rmiserver
+  price-converter-rmiserver:
+    container_name: price-converter-rmiserver
+    image: cphmn492/price-converter-rmiserver
+    expose:
+      - "1099"
+    networks: 
+      - cam
   camunda-car-rest-service-client:
+    container_name: camunda-car-rest-service-client
     image: cphmn492/camunda-car-rest-service-client
-    restart: "on-failure"
+    networks: 
+      - cam
     depends_on:
-      - camunda # camunda-duty-calculator will only start if camunda is up and running
+      - camunda
       - car-rest-service
   car-rest-service:
+    container_name: car-rest-service
     image: cphmn492/car-rest-service
-    ports: # host:container- Bind the container port(8080) to the host port(8082) Any traffic from the host via port 8082 will go to the docker container via port 8080 
+    ports:
       - "8090:8090"
-    expose:
-      - "8090"
-    restart: "on-failure"
+    networks: 
+      - cam
   scraper-monolith:
+    container_name: scraper-monolith
     image: cphmn492/scraper-monolith
-    restart: "on-failure"
+    networks: 
+      - cam
+  camunda:
+    container_name: camunda
+    image: camunda/camunda-bpm-platform:${DISTRO:-latest}
+    expose:
+      - "8080"
+    ports:
+      - "8080:8080"
+    networks: 
+      - cam
+
+networks:
+  cam:
+    driver: "bridge"
