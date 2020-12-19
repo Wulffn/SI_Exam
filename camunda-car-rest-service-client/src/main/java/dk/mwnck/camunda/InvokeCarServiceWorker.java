@@ -17,6 +17,7 @@ import java.util.logging.Logger;
 public class InvokeCarServiceWorker {
 
     private final static Logger LOGGER = Logger.getLogger(InvokeCarServiceWorker.class.getName());
+
     private final static String URL = "http://car-rest-service:8090/car";
 
     public static void main(String[] args) {
@@ -24,7 +25,6 @@ public class InvokeCarServiceWorker {
                 .baseUrl("http://camunda:8080/engine-rest")
                 .asyncResponseTimeout(10000)
                 .build();
-
         // subscribe to external task topic "invoke-car-service" as specified in BPMN
         client.subscribe("invoke-car-service")
                 .lockDuration(1000)
