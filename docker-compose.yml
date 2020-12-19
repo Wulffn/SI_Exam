@@ -1,48 +1,54 @@
-version: '3'
+version: "3"
 
 services:
   camunda-duty-calculator:
     container_name: camunda-duty-calculator
     image: cphmn492/camunda-duty-calculator
-    networks: 
+    networks:
       - cam
     depends_on:
       - camunda
+    restart: on-failure
   camunda-price-converter-rmiclient:
     container_name: camunda-price-converter-rmiclient
     image: cphmn492/camunda-price-converter-rmiclient
-    networks: 
+    networks:
       - cam
     depends_on:
       - camunda
       - price-converter-rmiserver
+    restart: on-failure
   price-converter-rmiserver:
     container_name: price-converter-rmiserver
     image: cphmn492/price-converter-rmiserver
     expose:
       - "1099"
-    networks: 
+    networks:
       - cam
+    restart: on-failure
   camunda-car-rest-service-client:
     container_name: camunda-car-rest-service-client
     image: cphmn492/camunda-car-rest-service-client
-    networks: 
+    networks:
       - cam
     depends_on:
       - camunda
       - car-rest-service
+    restart: on-failure
   car-rest-service:
     container_name: car-rest-service
     image: cphmn492/car-rest-service
     ports:
       - "8090:8090"
-    networks: 
+    networks:
       - cam
+    restart: on-failure
   scraper-monolith:
     container_name: scraper-monolith
     image: cphmn492/scraper-monolith
-    networks: 
+    networks:
       - cam
+    restart: on-failure
   camunda:
     container_name: camunda
     image: camunda/camunda-bpm-platform:${DISTRO:-latest}
@@ -50,9 +56,9 @@ services:
       - "8080"
     ports:
       - "8080:8080"
-    networks: 
+    networks:
       - cam
-
+    restart: on-failure
 networks:
   cam:
     driver: "bridge"
