@@ -11,7 +11,7 @@
 
 ![image](carDutyCalBPM.png)
 
-- Arkitektur:
+- ## Arkitektur:
 
 * **Monolit**\
   Hver brugtbilsplatform undersøges vha. såkaldte scrapers som traverserer et HTML-baseret søgeresultat og samler relevante data for en given bilmodel.\
