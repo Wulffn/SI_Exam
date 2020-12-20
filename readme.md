@@ -12,9 +12,9 @@
 ![image](carDutyCalBPM.png)
 
 - ## Middleware:
-Da vores BPM er udviklet i Camunda Modeler, som tilbyder nem udrulning til Camunda, syntes valget af Camunda som middleware relativt enkelt. Vi kunne således udnytte funktionaliteten i selve BPM'en som f.eks. navngivning af topics på diverse tasks. Camunda er ydermere platformsuafhængigt og kan bruges med flere forskellige sprog, hvilket var kravet i opgaven.
+  Da vores BPM er udviklet i Camunda Modeler, som tilbyder nem udrulning til Camunda, syntes valget af Camunda som middleware relativt enkelt. Vi kunne således udnytte funktionaliteten i selve BPM'en som f.eks. navngivning af topics på diverse tasks. Camunda er ydermere platformsuafhængigt og kan bruges med flere forskellige sprog, hvilket var kravet i opgaven.
 - ## Udviklingsproces:
-Vi har udelukkende benyttet os a pair-programming - en disciplin fra XP. Denne disciplin har vi de bedste erfaringer med, når vi arbejder med ukendte teknologier i et så stort omfang. Selvom applikationen samlet set er relativ enkel, er der gjort mange overvejelser i forbindelse med tilvejebringelsen da den, udover at være håndteret af Camunda, også omfatter webscraping, threads, python, java og rmi. Ligeledes er der foretaget arkitekturelle overvejelser, da vi gerne havde forsøgt at afvikle den med et alternativt middleware, hvis tiden havde været til det. Således er der ingen direkte kobling mellem Camunda og de komponenter, den ultimativt igangsætter.
+  Vi har udelukkende benyttet os a pair-programming - en disciplin fra XP. Denne disciplin har vi de bedste erfaringer med, når vi arbejder med ukendte teknologier i et så stort omfang. Selvom applikationen samlet set er relativ enkel, er der gjort mange overvejelser i forbindelse med tilvejebringelsen da den, udover at være håndteret af Camunda, også omfatter webscraping, threads, python, java og rmi. Ligeledes er der foretaget arkitekturelle overvejelser, da vi gerne havde forsøgt at afvikle den med et alternativt middleware, hvis tiden havde været til det. Således er der ingen direkte kobling mellem Camunda og de komponenter, den ultimativt igangsætter.
 - ## Arkitektur:
 
 * **Monolit**\
