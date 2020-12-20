@@ -82,6 +82,13 @@ Opdelingen i eksterne komponenter og Camunda klienter er lavet på baggrund af i
           docker-compose pull
           docker-compose up
 
+    Når alle containere kører, kan man logge ind på Camunda via:
+    http://localhost:8080/camunda (demo/demo)
+    Herefter skal deploy.bpm deployes til Camunda, evt. vha. Camunda Modeler, via:
+    http://localhost:8080/engine-rest
+    
+    Beregningsprocessen kan herefter startes i Camunda cockpit ---> start process.
+    Herefter kan processen følges visuelt i Camunda task list.
 - ## **Orkestrering og koreografi**
    Projektet benytter Camunda til orkestrering af processens forskellige handlinger. Det er således Camunda der, på baggrund af vores BPM afgør, i hvilken rækkefølge, handlingerne udføres.\
    Der er tale om en orkestrering, da alle handlinger er afhængige af hinanden; ingen kan kaldes parallelt. Vi kunne dog have designet price-converter-rmiclient'en således, at den blot hentede valutakurser uanset hvilken målvaluta der ønskes. Den ville da ikke have været afhængige af en liste af biler.\
